@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4639007762385446}
   - component: {fileID: 61771235401220836}
   - component: {fileID: 50868444649096310}
+  - component: {fileID: 114702880332217638}
   m_Layer: 0
   m_Name: Proto_Enemy
   m_TagString: Enemy
@@ -116,7 +117,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 --- !u!212 &212149310211612042
+=======
+--- !u!114 &114702880332217638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889863019126426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a117bdae395ec05469638d1caf8e790c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &212833313819578180
+>>>>>>> bd3e723d1cf32bf3c0eca352d3347e46fda8aa3a
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

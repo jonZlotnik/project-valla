@@ -231,11 +231,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4546331610222084, guid: 8278c29386c17c045bc8ea4ccded2ea0, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8278c29386c17c045bc8ea4ccded2ea0, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 --- !u!1 &750662142 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1889863019126426, guid: 572ba47c4b394a5468ce59d98b10202f,
@@ -856,6 +857,9 @@ Transform:
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &914689775
+=======
+--- !u!1001 &767823395
+>>>>>>> bd3e723d1cf32bf3c0eca352d3347e46fda8aa3a
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -864,11 +868,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4639007762385446, guid: 572ba47c4b394a5468ce59d98b10202f, type: 2}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4639007762385446, guid: 572ba47c4b394a5468ce59d98b10202f, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
+=======
+      value: 1.812489
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639007762385446, guid: 572ba47c4b394a5468ce59d98b10202f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.28608167
+>>>>>>> bd3e723d1cf32bf3c0eca352d3347e46fda8aa3a
       objectReference: {fileID: 0}
     - target: {fileID: 4639007762385446, guid: 572ba47c4b394a5468ce59d98b10202f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -892,7 +904,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4639007762385446, guid: 572ba47c4b394a5468ce59d98b10202f, type: 2}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 2
+=======
+      value: 1
+>>>>>>> bd3e723d1cf32bf3c0eca352d3347e46fda8aa3a
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 572ba47c4b394a5468ce59d98b10202f, type: 2}
