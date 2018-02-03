@@ -10,13 +10,13 @@ public class Enemy : Character {
 	private RaycastHit2D atWall;
 
 	// Use this for initialization
-	protected void Start () {
+	protected new void Start () {
 		base.Start();
 		this.keepMoving = true;
 	}
 	
 	// Update is called once per frame
-	protected void Update () {
+	protected new void Update () {
 		base.Update();
 		if(this.keepMoving == true){
 			movementAI();
