@@ -10,13 +10,13 @@ public class Enemy : Character {
 	private RaycastHit2D atWall;
 
 	// Use this for initialization
-	protected void Start () {
+	protected new void Start () {
 		base.Start();
 		this.keepMoving = true;
 	}
 	
 	// Update is called once per frame
-	protected void Update () {
+	protected new void Update () {
 		base.Update();
 		if(this.keepMoving == true){
 			movementAI();
@@ -29,18 +29,37 @@ public class Enemy : Character {
 	{
 		this.keepMoving = false;
 	}
+	public void resumeMoving()
+	{
+		this.keepMoving = true;
+	}
 	private void movementAI()
 	{
-		Vector2 wallPoint = new Vector2(
-			this.getPosition().x+this.getDirection()*this.getSize().x,
+		Vector2 facePoint = new Vector2(
+			this.getPosition().x + this.getDirection()*(this.getSize().x),
 			this.getPosition().y
 		);
-		this.atWall = Physics2D.Linecast(this.getPosition(), wallPoint);
-		if (this.atWall.transform.gameObject.tag.Equals("Platform"))
+		Vector2 wallPoint = new Vector2(
+			this.getPosition().x + this.getDirection()*(this.getSize().x+1f),
+			this.getPosition().y
+		);
+		this.atWall = Physics2D.Linecast(facePoint, wallPoint, LayerMask.GetMask("Platforms"));
+
+
+		Debug.Log(this.getPosition().x+"  |  "+facePoint.x+"  |  "+wallPoint.x);
+
+		if(this.atWall.transform != null)
 		{
+			Debug.Log(this.atWall.collider.name);
+		}
+
+		if (this.atWall.collider != null && this.atWall.collider.tag.Equals("Platform"))
+		{
+			Debug.Log("Should flip");
 			this.flip();
+			this.moveForward(3f);
 		}else{
-			this.moveForward(2f);
+			this.moveForward(3f);
 		}
 	}
 }
