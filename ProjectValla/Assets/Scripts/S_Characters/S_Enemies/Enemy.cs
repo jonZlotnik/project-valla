@@ -43,17 +43,22 @@ public class Enemy : Character {
 			this.getPosition().x + this.getDirection()*(this.getSize().x+1f),
 			this.getPosition().y
 		);
+		Vector2 floorPoint = new Vector2(
+			this.getPosition().x + this.getDirection()*(this.getSize().x),
+			this.getPosition().y - 0.33f
+		);
 		this.atWall = Physics2D.Linecast(facePoint, wallPoint, LayerMask.GetMask("Platforms"));
+		this.atLedge = Physics2D.Linecast(facePoint, floorPoint, LayerMask.GetMask("Platforms"));
 
+		//Debug.Log(this.getPosition().x+"  |  "+facePoint.x+"  |  "+wallPoint.x);
 
-		Debug.Log(this.getPosition().x+"  |  "+facePoint.x+"  |  "+wallPoint.x);
-
-		if(this.atWall.transform != null)
+		if(this.atLedge.transform != null)
 		{
-			Debug.Log(this.atWall.collider.name);
+			Debug.Log(facePoint.y +"  |  "+ floorPoint.y);
 		}
 
-		if (this.atWall.collider != null && this.atWall.collider.tag.Equals("Platform"))
+		if (this.atWall.collider != null && this.atWall.collider.tag.Equals("Platform") ||
+			this.atLedge.collider == null)
 		{
 			Debug.Log("Should flip");
 			this.flip();
