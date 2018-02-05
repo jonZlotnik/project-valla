@@ -45,7 +45,7 @@ public class Enemy : Character {
 		);
 		Vector2 floorPoint = new Vector2(
 			this.getPosition().x + this.getDirection()*(this.getSize().x),
-			this.getPosition().y - 0.33f
+			this.getPosition().y - this.getSize().y/2 - 0.01f
 		);
 		this.atWall = Physics2D.Linecast(facePoint, wallPoint, LayerMask.GetMask("Platforms"));
 		this.atLedge = Physics2D.Linecast(facePoint, floorPoint, LayerMask.GetMask("Platforms"));
@@ -54,17 +54,18 @@ public class Enemy : Character {
 
 		if(this.atLedge.transform != null)
 		{
-			Debug.Log(facePoint.y +"  |  "+ floorPoint.y);
+			//Debug.Log(facePoint.y +"  |  "+ floorPoint.y);
 		}
 
-		if (this.atWall.collider != null && this.atWall.collider.tag.Equals("Platform") ||
-			this.atLedge.collider == null)
+		if (((this.atWall.collider != null && this.atWall.collider.tag.Equals("Platform")) ||
+			this.atLedge.collider == null) && this.isGrounded())
 		{
 			Debug.Log("Should flip");
 			this.flip();
-			this.moveForward(3f);
+			this.moveForward(5f);
+			this.jump(2f);
 		}else{
-			this.moveForward(3f);
+			this.moveForward(5f);
 		}
 	}
 }

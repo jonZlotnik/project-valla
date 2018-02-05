@@ -26,6 +26,7 @@ public class Character : MonoBehaviour {
 		);
 	}
 
+
 	//Health Functions
 	public void initHP(int hp)
 	{
@@ -35,6 +36,13 @@ public class Character : MonoBehaviour {
 	public void takeDamage(int damage)
 	{
 		this.hp -= damage;
+	}
+	public void takeDamage(int damage, Character attacker)
+	{
+		this.hp -= damage;
+		Vector2 knockBack = attacker.getPosition() - this.getPosition();
+		knockBack.Normalize();
+		knockBack *= damage;
 	}
 
 	private void checkHealth()
@@ -51,7 +59,7 @@ public class Character : MonoBehaviour {
 	}
 
 
-	//Movement Functions
+	//Horizotical Movement Functions
 	public void moveForward(float speed)
 	{
 		this.rb2d.velocity = new Vector2(Mathf.Abs(speed)*this.getDirection(), this.rb2d.velocity.y);
@@ -64,6 +72,44 @@ public class Character : MonoBehaviour {
 			this.transform.localScale.z
 		);
 	}
+
+	//Vertical Movement Properties
+	private Vector2 groundCheckR;
+	private Vector2 groundCheckL;
+	private RaycastHit2D groundCastR;
+	private RaycastHit2D groundCastL;
+	//Vertical Movement Functions
+	public bool isGrounded()
+	{
+		groundCheckR = new Vector2(
+			this.getPosition().x+this.getSize().x/2,
+			this.getPosition().y-this.getSize().y/2-0.01f
+		);
+		groundCheckL = new Vector2(
+			this.getPosition().x-this.getSize().x/2,
+			this.getPosition().y-this.getSize().y/2-0.01f
+		);
+		groundCastR = Physics2D.Linecast(this.getPosition(), groundCheckR, LayerMask.GetMask("Platforms"));
+		groundCastL = Physics2D.Linecast(this.getPosition(), groundCheckL, LayerMask.GetMask("Platforms"));
+		if(groundCastR.collider != null || groundCastL.collider != null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	protected void jump(float jumpHeight)
+	{
+		Vector2 jumpVelocity = new Vector2(this.rb2d.velocity.x, Mathf.Sqrt(-2f* Physics2D.gravity.y*jumpHeight));
+		this.rb2d.velocity = jumpVelocity;
+	}
+	protected void cancelJump()
+	{
+		this.rb2d.velocity = new Vector2(this.rb2d.velocity.x, 0f);
+	}
+
 
 
 	// Use this for initialization
