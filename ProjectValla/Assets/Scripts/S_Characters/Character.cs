@@ -58,7 +58,7 @@ public class Character : MonoBehaviour {
 	}
 	public void flip()
 	{
-		this.transform.localScale.Set(
+		this.transform.localScale = new Vector3(
 			-(this.transform.localScale.x),
 			this.transform.localScale.y,
 			this.transform.localScale.z
