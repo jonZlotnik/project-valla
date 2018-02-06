@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4490866810260888}
   - component: {fileID: 212027540687395670}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: whiteBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114261861057470130}
   - component: {fileID: 58055611949475320}
   - component: {fileID: 114403572656398628}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ProjectileAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 50868444649096310}
   - component: {fileID: 114052195250854036}
   - component: {fileID: 114344423346646476}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Proto_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889863019126426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.75, y: -2.5, z: 0}
+  m_LocalPosition: {x: -2.78, y: -1.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4490866810260888}
