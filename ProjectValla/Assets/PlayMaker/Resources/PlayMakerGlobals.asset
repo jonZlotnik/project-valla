@@ -32,3 +32,5 @@ MonoBehaviour:
     variableCategoryIDs: 
   events:
   - Is Hit
+  - Apply Vel
+  - Stop Vel
