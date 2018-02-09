@@ -13,7 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variables:
     floatVariables: []
-    intVariables: []
+    intVariables:
+    - useVariable: 1
+      name: enteredTransitioner
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: 0
     boolVariables: []
     stringVariables: []
     vector2Variables: []
@@ -29,8 +35,21 @@ MonoBehaviour:
     enumVariables: []
     categories:
     - 
-    variableCategoryIDs: 
+    variableCategoryIDs: 00000000
   events:
   - Is Hit
   - Apply Vel
   - Stop Vel
+  - Show Damage
+  - Show Warning
+  - Initiate
+  - Attack Select
+  - Fade In
+  - Fade Out
+  - SpawnR1
+  - SpawnR2
+  - SpawnR3
+  - SpawnR4
+  - SpawnR5
+  - SpawnR6
+  - SpawnR7

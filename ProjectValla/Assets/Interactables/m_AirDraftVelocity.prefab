@@ -145,23 +145,23 @@ MonoBehaviour:
     startState: Prep
     states:
     - name: Wait For Stay
-      description: 
+      description: Passes on Stay
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 246
-        y: 133
-        width: 111
+        x: 59
+        y: 166
+        width: 115.5
         height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
       transitions:
       - fsmEvent:
-          name: Inside
+          name: Enter
           isSystemEvent: 0
           isGlobal: 0
-        toState: Bool Inside True + All True?
+        toState: Bool Check
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - Inside
+        - Enter
         byteData: 01000000
         arrayParamSizes: 
         arrayParamTypes: []
@@ -223,14 +223,14 @@ MonoBehaviour:
         - storeCollider
         paramDataPos: 00000000000000000000000000000000
         paramByteDataSize: 04000000000000000000000000000000
-    - name: Wait For Exit
-      description: 
+    - name: Wait For Exit or Key
+      description: Passes on Outside or Key Up
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 221
-        y: 295
-        width: 106
+        x: 248
+        y: 343.10938
+        width: 181.5
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
           name: Exit
           isSystemEvent: 0
           isGlobal: 0
-        toState: Stop
+        toState: Stop Velocity
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -350,12 +350,12 @@ MonoBehaviour:
         paramDataPos: 00000000000000000100000000000000000000000100000002000000000000000000000001000000010000000200000005000000
         paramByteDataSize: 00000000000000000000000000000000010000000400000000000000000000000000000000000000000000000000000001000000
     - name: Send Velocity
-      description: 
-      colorIndex: 0
+      description: Ping Manager
+      colorIndex: 1
       position:
         serializedVersion: 2
-        x: 357
-        y: 251
+        x: 244.02344
+        y: 261
         width: 110
         height: 32
       isBreakpoint: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Wait For Exit
+        toState: Wait For Exit or Key
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -454,14 +454,16 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 00000000000000000000000000000000
         paramByteDataSize: 00000000000000000000000001000000
-    - name: Stop
-      description: 
-      colorIndex: 0
+    - name: Stop Velocity
+      description: 'Ping Manager
+
+'
+      colorIndex: 1
       position:
         serializedVersion: 2
-        x: 68.94531
-        y: 230
-        width: 100
+        x: 64.94531
+        y: 317.01562
+        width: 108.5
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -564,8 +566,8 @@ MonoBehaviour:
       colorIndex: 6
       position:
         serializedVersion: 2
-        x: 80
-        y: 109.99219
+        x: 68
+        y: 107.984375
         width: 100
         height: 32
       isBreakpoint: 0
@@ -637,14 +639,16 @@ MonoBehaviour:
         - storeResult
         paramDataPos: 0000000000000000
         paramByteDataSize: 0000000000000000
-    - name: Bool Inside True + All True?
-      description: 
+    - name: Bool Check
+      description: 'Inside Bool = True
+
+        Passes on Inside and Key Up'
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 251.00781
-        y: 190
-        width: 204
+        x: 238.00781
+        y: 150
+        width: 170
         height: 48
       isBreakpoint: 0
       isSequence: 0
@@ -679,7 +683,7 @@ MonoBehaviour:
         - 
         actionEnabled: 01010101
         actionIsOpen: 01010101
-        actionStartIndex: 0000000001000000060000000c000000
+        actionStartIndex: 0000000001000000060000000b000000
         actionHashCodes: 62f9520368fece05807687051b61eb00
         unityObjectParams: []
         fsmGameObjectParams:
@@ -743,12 +747,6 @@ MonoBehaviour:
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: inside
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        - useVariable: 1
           name: keyDown
           tooltip: 
           showInInspector: 0
@@ -769,12 +767,12 @@ MonoBehaviour:
         - Inside+Key True
         - Exit
         byteData: 010102000000
-        arrayParamSizes: 02000000
+        arrayParamSizes: 01000000
         arrayParamTypes:
         - HutongGames.PlayMaker.FsmBool
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1100000014000000120000001200000011000000010000000c000000110000001100000017000000110000000100000007000000120000001700000013000000
+        paramDataType: 1100000014000000120000001200000011000000010000000c0000001100000017000000110000000100000007000000120000001700000013000000
         paramName:
         - boolVariable
         - gameObject
@@ -784,7 +782,6 @@ MonoBehaviour:
         - everyFrame
         - boolVariables
         - 
-        - 
         - sendEvent
         - storeResult
         - everyFrame
@@ -792,16 +789,16 @@ MonoBehaviour:
         - collideTag
         - sendEvent
         - storeCollider
-        paramDataPos: 00000000000000000000000001000000010000000000000000000000020000000300000000000000040000000100000002000000020000000100000000000000
-        paramByteDataSize: 00000000000000000000000000000000000000000100000000000000000000000000000000000000000000000100000004000000000000000000000000000000
+        paramDataPos: 000000000000000000000000010000000100000000000000000000000200000000000000030000000100000002000000020000000100000000000000
+        paramByteDataSize: 000000000000000000000000000000000000000001000000000000000000000000000000000000000100000004000000000000000000000000000000
     - name: Bool Inside False
-      description: 
+      description: Inside Bool = False
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 52.976562
-        y: 180
-        width: 133
+        x: 62.992188
+        y: 247
+        width: 140
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -870,10 +867,10 @@ MonoBehaviour:
     - name: Apply Vel
       isSystemEvent: 0
       isGlobal: 1
-    - name: Exit
+    - name: Enter
       isSystemEvent: 0
       isGlobal: 0
-    - name: Inside
+    - name: Exit
       isSystemEvent: 0
       isGlobal: 0
     - name: Inside+Key True
@@ -941,7 +938,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 1
+    preprocessed: 0
     ExposedEvents: []
     RestartOnEnable: 1
     EnableDebugFlow: 0
@@ -951,8 +948,8 @@ MonoBehaviour:
     mouseEvents: 0
     handleLevelLoaded: 0
     handleTriggerEnter2D: 0
-    handleTriggerExit2D: 1
-    handleTriggerStay2D: 1
+    handleTriggerExit2D: 0
+    handleTriggerStay2D: 0
     handleCollisionEnter2D: 0
     handleCollisionExit2D: 0
     handleCollisionStay2D: 0
@@ -1741,7 +1738,13 @@ MonoBehaviour:
         showInInspector: 0
         networkSync: 0
         value: 
-      vector2Variables: []
+      vector2Variables:
+      - useVariable: 1
+        name: baseVelocity
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: {x: 0, y: 0}
       vector3Variables: []
       colorVariables: []
       rectVariables: []
@@ -1766,7 +1769,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 00000000000000000000000000000000
+      variableCategoryIDs: 0000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 1
