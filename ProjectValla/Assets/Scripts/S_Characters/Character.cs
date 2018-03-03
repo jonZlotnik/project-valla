@@ -90,23 +90,6 @@ public class Character : MonoBehaviour {
 	{
 		this.hp = hp;
 	}
-
-	private void takeDamage(int damage)
-	{
-		this.hp -= damage;
-	}
-	private void takeDamage(int damage, Character attacker)
-	{
-		this.hp -= damage;
-		Vector2 knockBack = attacker.getPosition() - this.getPosition();
-		knockBack.Normalize();
-		knockBack *= damage;
-	}
-	public void receiveAttack(Attack attack)
-	{
-		
-	}
-
 	private void checkHealth()
 	{
 		if(this.hp <= 0)
@@ -119,6 +102,23 @@ public class Character : MonoBehaviour {
 	{
 		Destroy(this.gameObject);
 	}
+
+	private void takeDamage(int damage)
+	{
+		this.hp -= damage;
+	}
+	public void receiveAttack(Attack attack)
+	{
+		this.takeDamage(attack.getDamageValue());
+
+		int knockBackDir;
+		knockBackDir = (attack.getAttackerTransform().position.x - this.getPosition().x) > 0 ? 1 : -1 ;
+
+		Vector2 knockBack = new Vector2(5f,5f)*attack.getKnockBackMultiplier();
+		this.rb2d.velocity = knockBack;
+	}
+
+	//protected void attack(Attack attack, )
 
 
 

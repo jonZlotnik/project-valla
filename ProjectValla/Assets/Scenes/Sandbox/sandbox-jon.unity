@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1998bb47d1023e743829aa9ee2dc9a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canControl: 1
 --- !u!50 &198906434
 Rigidbody2D:
   serializedVersion: 4
@@ -215,11 +216,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4265164011290162, guid: d2e2ee06cb556384d852d870313cfc27, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4265164011290162, guid: d2e2ee06cb556384d852d870313cfc27, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.08
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4265164011290162, guid: d2e2ee06cb556384d852d870313cfc27, type: 2}
       propertyPath: m_LocalPosition.z
@@ -349,7 +350,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 363618794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13, y: 1.36, z: -0.53}
+  m_LocalPosition: {x: 0, y: 1.65, z: -0.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 198906432}

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Valla : Human {
 
+	private float lastHorizontalAxisValue = 0f;
+	public bool canControl = true;
+
 	// Use this for initialization
 	protected new void Start () {
 		base.Start();
@@ -13,19 +16,28 @@ public class Valla : Human {
 	// Update is called once per frame
 	protected new void Update () {
 		base.Update();
-		userControlHorizontal();
-		userControlVertical();
+		if(canControl)
+		{
+			userControlHorizontal();
+			userControlVertical();
+		}
+		lastHorizontalAxisValue = Input.GetAxis("Horizontal");
 	}
 
 	private void userControlHorizontal()
 	{
-		if(Input.GetKey(KeyCode.A)){
+		//Move Left
+		if(Input.GetAxis("Horizontal") < 0){
 			if(this.getDirection() > 0){this.flip();}
 			this.moveForward(5f);
-		}else if(Input.GetKey(KeyCode.D)){
+		}
+		//Move Right
+		else if(Input.GetAxis("Horizontal") > 0){
 			if(this.getDirection() < 0){this.flip();}
 			this.moveForward(5f);
-		}else{
+		}
+		//Cut Movement
+		else if(Input.GetAxis("Horizontal") == 0 && lastHorizontalAxisValue != 0){
 			this.moveForward(0f);
 		}
 	}
