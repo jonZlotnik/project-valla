@@ -26,39 +26,6 @@ public class Character : MonoBehaviour {
 		);
 	}
 
-
-	//Health Functions
-	public void initHP(int hp)
-	{
-		this.hp = hp;
-	}
-
-	public void takeDamage(int damage)
-	{
-		this.hp -= damage;
-	}
-	public void takeDamage(int damage, Character attacker)
-	{
-		this.hp -= damage;
-		Vector2 knockBack = attacker.getPosition() - this.getPosition();
-		knockBack.Normalize();
-		knockBack *= damage;
-	}
-
-	private void checkHealth()
-	{
-		if(this.hp <= 0)
-		{
-			this.die();
-		}
-	}
-
-	private void die()
-	{
-		Destroy(this.gameObject);
-	}
-
-
 	//Horizotical Movement Functions
 	public void moveForward(float speed)
 	{
@@ -109,6 +76,51 @@ public class Character : MonoBehaviour {
 	{
 		this.rb2d.velocity = new Vector2(this.rb2d.velocity.x, 0f);
 	}
+
+
+
+
+
+
+
+
+
+	//Health/Combat Functions
+	public void initHP(int hp)
+	{
+		this.hp = hp;
+	}
+	private void checkHealth()
+	{
+		if(this.hp <= 0)
+		{
+			this.die();
+		}
+	}
+
+	private void die()
+	{
+		Destroy(this.gameObject);
+	}
+
+	private void takeDamage(int damage)
+	{
+		this.hp -= damage;
+	}
+	public void receiveAttack(Attack attack)
+	{
+		this.takeDamage(attack.getDamageValue());
+
+		int knockBackDir;
+		knockBackDir = (attack.getAttackerTransform().position.x - this.getPosition().x) > 0 ? 1 : -1 ;
+
+		Vector2 knockBack = new Vector2(5f,5f)*attack.getKnockBackMultiplier();
+		this.rb2d.velocity = knockBack;
+	}
+
+	//protected void attack(Attack attack, )
+
+
 
 
 
