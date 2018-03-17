@@ -23,11 +23,41 @@ MonoBehaviour:
     boolVariables: []
     stringVariables: []
     vector2Variables: []
-    vector3Variables: []
+    vector3Variables:
+    - useVariable: 1
+      name: lastCheckpoint
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: {x: 0, y: 0, z: 0}
     colorVariables: []
     rectVariables: []
     quaternionVariables: []
-    gameObjectVariables: []
+    gameObjectVariables:
+    - useVariable: 1
+      name: m_Fade
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: {fileID: 0}
+    - useVariable: 1
+      name: m_MiniPlayerRespawn
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: {fileID: 0}
+    - useVariable: 1
+      name: m_ZoneRooms
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: {fileID: 0}
+    - useVariable: 1
+      name: player
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: {fileID: 1306299107491336, guid: d2e2ee06cb556384d852d870313cfc27, type: 2}
     objectVariables: []
     materialVariables: []
     textureVariables: []
@@ -35,7 +65,7 @@ MonoBehaviour:
     enumVariables: []
     categories:
     - 
-    variableCategoryIDs: 00000000
+    variableCategoryIDs: 000000000000000000000000000000000000000000000000
   events:
   - Is Hit
   - Apply Vel
@@ -52,9 +82,10 @@ MonoBehaviour:
   - SpawnR4
   - SpawnR5
   - SpawnR6
-  - SpawnR7
   - New Position
   - Stop
   - 'Next '
   - Entered
   - Small Shake
+  - Room Transition
+  - SpawnR7
