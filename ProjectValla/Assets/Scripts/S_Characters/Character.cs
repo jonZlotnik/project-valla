@@ -4,8 +4,23 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
-	private int hp;
+
+	//General State Properties
+	protected bool isIdle = false;
+	protected bool isRunning = false;
+	protected bool isDashing =false;
+	protected bool isKnockbacking = false;
+	protected bool isOnWall = false;
+	protected bool isGliding = false;
+	protected bool isFalling = false;
+	protected bool isAttackStance = false;
+	protected bool isHealthStance = false;
+	protected bool isEnergyStance = false;
+	protected bool isSpeedStance = false;
+
+	//MonoBehaviour Properties
 	private Rigidbody2D rb2d;
+	protected Collider2D col2d;
 
 	//Position Getter
 	public Vector2 getPosition(){
@@ -26,7 +41,11 @@ public class Character : MonoBehaviour {
 		);
 	}
 
-	//Horizotical Movement Functions
+	//General Movement Properties
+	//General Movement Functions
+
+	//Horizontical Movement Properties
+	//Horizontical Movement Functions
 	public void moveForward(float speed)
 	{
 		this.rb2d.velocity = new Vector2(Mathf.Abs(speed)*this.getDirection(), this.rb2d.velocity.y);
@@ -77,18 +96,15 @@ public class Character : MonoBehaviour {
 		this.rb2d.velocity = new Vector2(this.rb2d.velocity.x, 0f);
 	}
 
-
-
-
-
-
-
-
+	//Health/Combat Properties
+	public int maxHealth;
+	public int hp;
 
 	//Health/Combat Functions
 	public void initHP(int hp)
 	{
-		this.hp = hp;
+		this.maxHealth = hp;
+		this.hp = maxHealth;
 	}
 	private void checkHealth()
 	{
@@ -111,11 +127,12 @@ public class Character : MonoBehaviour {
 	{
 		this.takeDamage(attack.getDamageValue());
 
-		int knockBackDir;
-		knockBackDir = (attack.getAttackerTransform().position.x - this.getPosition().x) > 0 ? 1 : -1 ;
+		Direction knockBackDir;
+		knockBackDir = (attack.getAttackerTransform().position.x - this.getPosition().x) > 0 ? Direction.RIGHT : Direction.LEFT ;
 
 		Vector2 knockBack = new Vector2(5f,5f)*attack.getKnockBackMultiplier();
 		this.rb2d.velocity = knockBack;
+		this.isKnockbacking = true;
 	}
 
 	//protected void attack(Attack attack, )
@@ -128,10 +145,31 @@ public class Character : MonoBehaviour {
 	protected void Start () {
 		//Initialize Components
 		this.rb2d = this.gameObject.GetComponent<Rigidbody2D>();
+		this.col2d = this.gameObject.GetComponent<Collider2D>(); 
 	}
 	
 	// Update is called once per frame
 	protected void Update () {
 		checkHealth();
+	}
+
+
+	//Timers
+	private float knockBackTimer = 0f;
+	private float KNOCKBACK_DURATION = 1.0f;
+
+	// FixedUpdate is called every fixed framerate frame
+	protected void FixedUpdate() {
+
+		//KnockBack Timekeeping
+		if(this.isKnockbacking && knockBackTimer < KNOCKBACK_DURATION)
+		{
+			this.knockBackTimer += Time.deltaTime;
+		}
+		else
+		{
+			this.knockBackTimer = 0;
+			this.isKnockbacking = false;
+		}
 	}
 }

@@ -54,4 +54,16 @@ public class Valla : Human {
 			this.cancelJump();
 		}
 	}
+
+	private void checkControl()
+	{
+		if(this.isKnockbacking)
+		{
+			this.canControl = false;
+		}
+		else 
+		{ 
+			this.canControl = true;
+		}
+	}
 }
