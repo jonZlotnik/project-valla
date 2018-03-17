@@ -17,9 +17,9 @@ TagManager:
   - 
   - Platforms
   - Enemies
-  - Humans
-  - 
-  - 
+  - ControlHUBs
+  - Player
+  - TRIGGER
   - 
   - 
   - 

@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TG_Rooms/TG_Room0.unity
+    guid: 52aa376ebcb67ea428f0906f6689fe39
+  - enabled: 1
+    path: Assets/Scenes/TG_Rooms/TG_Room1.unity
+    guid: f011ea4a828ccac4bbdf0a90d00a7d77
