@@ -77,15 +77,15 @@ MonoBehaviour:
   - Fade In
   - Fade Out
   - SpawnR1
-  - SpawnR2
-  - SpawnR3
-  - SpawnR4
-  - SpawnR5
-  - SpawnR6
   - New Position
   - Stop
   - 'Next '
   - Entered
   - Small Shake
   - Room Transition
-  - SpawnR7
+  - Init Attack Stance
+  - Init Energy Stance
+  - Init Health Stance
+  - Init Speed Stance
+  - 'Energy Changed '
+  - Energy Full

@@ -5630,7 +5630,7 @@ MonoBehaviour:
       - fsmEvent:
           name: Entered
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: Start Boss
         linkStyle: 0
         linkConstraint: 0
