@@ -343,8 +343,7 @@ MonoBehaviour:
             tooltip: 
             showInInspector: 0
             networkSync: 0
-            value: {fileID: 1306299107491336, guid: d2e2ee06cb556384d852d870313cfc27,
-              type: 2}
+            value: {fileID: 0}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []

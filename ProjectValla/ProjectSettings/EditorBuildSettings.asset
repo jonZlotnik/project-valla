@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TG_Rooms/TG_Room1.unity
     guid: f011ea4a828ccac4bbdf0a90d00a7d77
+  - enabled: 1
+    path: Assets/Scenes/TG_Rooms/TG_Room2.unity
+    guid: bc35a7227fd990d4fa55b813ce8b9b27
+  - enabled: 1
+    path: Assets/Scenes/TG_Rooms/TG_Room3.unity
+    guid: 2f33060f34ad0b34ca792a98b7605168

@@ -15,7 +15,19 @@ MonoBehaviour:
     floatVariables: []
     intVariables:
     - useVariable: 1
+      name: energyCurrent
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: 0
+    - useVariable: 1
       name: enteredTransitioner
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: 0
+    - useVariable: 1
+      name: moneyCurrent
       tooltip: 
       showInInspector: 0
       networkSync: 0
@@ -47,6 +59,12 @@ MonoBehaviour:
       networkSync: 0
       value: {fileID: 0}
     - useVariable: 1
+      name: m_PlayerResources
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: {fileID: 0}
+    - useVariable: 1
       name: m_ZoneRooms
       tooltip: 
       showInInspector: 0
@@ -57,7 +75,7 @@ MonoBehaviour:
       tooltip: 
       showInInspector: 0
       networkSync: 0
-      value: {fileID: 1306299107491336, guid: d2e2ee06cb556384d852d870313cfc27, type: 2}
+      value: {fileID: 0}
     objectVariables: []
     materialVariables: []
     textureVariables: []
@@ -65,7 +83,7 @@ MonoBehaviour:
     enumVariables: []
     categories:
     - 
-    variableCategoryIDs: 000000000000000000000000000000000000000000000000
+    variableCategoryIDs: 000000000000000000000000000000000000000000000000000000000000000000000000
   events:
   - Is Hit
   - Apply Vel
@@ -78,7 +96,6 @@ MonoBehaviour:
   - Fade Out
   - SpawnR1
   - New Position
-  - Stop
   - 'Next '
   - Entered
   - Small Shake
@@ -89,3 +106,5 @@ MonoBehaviour:
   - Init Speed Stance
   - 'Energy Changed '
   - Energy Full
+  - Money Changed
+  - Stop
