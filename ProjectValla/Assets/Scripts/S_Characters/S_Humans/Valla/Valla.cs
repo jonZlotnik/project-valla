@@ -14,7 +14,7 @@ public class Valla : Human {
 	}
 
 	// Update is called once per frame
-	protected new void Update () {
+	protected new void FixedUpdate () {
 		base.Update();
 		if(canControl)
 		{

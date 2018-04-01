@@ -5,7 +5,7 @@ using UnityEngine;
 public class Slash : Attack {
 
 	public const int SLASH_DAMAGE = 1;
-	public const float SLASH_KNOCKBACK = 1f;
+	public const float SLASH_KNOCKBACK = 0.5f;
 	public const float SLASH_REPEAT_DELAY = 1f;
 
 
