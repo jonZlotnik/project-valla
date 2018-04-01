@@ -17,6 +17,9 @@ public class Character : MonoBehaviour {
 	protected bool isHealthStance = false;
 	protected bool isEnergyStance = false;
 	protected bool isSpeedStance = false;
+	protected bool isInvincible = false;
+	protected bool isImmune = false;
+
 
 	//MonoBehaviour Properties
 	private Rigidbody2D rb2d;
@@ -125,14 +128,19 @@ public class Character : MonoBehaviour {
 	}
 	public void receiveAttack(Attack attack)
 	{
-		this.takeDamage(attack.getDamageValue());
+		if(!this.isInvincible)
+		{
+			this.takeDamage(attack.getDamageValue());
 
-		Direction knockBackDir;
-		knockBackDir = (attack.getAttackerTransform().position.x - this.getPosition().x) > 0 ? Direction.RIGHT : Direction.LEFT ;
+			Direction knockBackDir;
+			knockBackDir = (attack.getAttackerTransform().position.x - this.getPosition().x) < 0 ? Direction.RIGHT : Direction.LEFT ;
 
-		Vector2 knockBack = new Vector2(5f,5f)*attack.getKnockBackMultiplier();
-		this.rb2d.velocity = knockBack;
-		this.isKnockbacking = true;
+			Vector2 knockBack = new Vector2(1f,1f)*attack.getKnockBackMultiplier();
+			knockBack.x *= (knockBackDir==Direction.LEFT?-1:1);
+			this.rb2d.velocity = knockBack;
+			this.isKnockbacking = true;
+			this.isInvincible = true;
+		}
 	}
 
 	//protected void attack(Attack attack, )
@@ -150,16 +158,32 @@ public class Character : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected void Update () {
-		checkHealth();
+		//checkHealth();
 	}
 
 
 	//Timers
+	public float invincibilityTimer = 0f;
+	private float INVINCIBILITY_DURATION = 1f;
+
 	private float knockBackTimer = 0f;
-	private float KNOCKBACK_DURATION = 1.0f;
+	private float KNOCKBACK_DURATION = 0.5f;
 
 	// FixedUpdate is called every fixed framerate frame
 	protected void FixedUpdate() {
+		checkHealth();
+
+		//Invincibility Timekeeping
+		if(this.isInvincible && invincibilityTimer < INVINCIBILITY_DURATION)
+		{
+			this.invincibilityTimer = this.invincibilityTimer + Time.deltaTime;
+		}
+		else
+		{
+			this.invincibilityTimer = 0;
+			this.isInvincible = false;
+		}
+
 
 		//KnockBack Timekeeping
 		if(this.isKnockbacking && knockBackTimer < KNOCKBACK_DURATION)

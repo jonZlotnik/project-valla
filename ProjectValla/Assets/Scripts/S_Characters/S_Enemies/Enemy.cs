@@ -16,7 +16,7 @@ public class Enemy : Character {
 	}
 	
 	// Update is called once per frame
-	protected new void Update () {
+	protected new void FixedUpdate () {
 		base.Update();
 		if(this.keepMoving == true){
 			movementAI();
