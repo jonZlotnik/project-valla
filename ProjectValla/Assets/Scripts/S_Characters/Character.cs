@@ -96,7 +96,11 @@ public class Character : MonoBehaviour {
 	}
 	protected void cancelJump()
 	{
-		this.rb2d.velocity = new Vector2(this.rb2d.velocity.x, 0f);
+		if(this.rb2d.velocity.y > 0)
+		{
+			this.rb2d.velocity = new Vector2(this.rb2d.velocity.x, 0f);
+		}
+
 	}
 
 	//Health/Combat Properties
@@ -113,6 +117,7 @@ public class Character : MonoBehaviour {
 	{
 		if(this.hp <= 0)
 		{
+			Debug.Log("Am i dead?? HP: "+this.hp);
 			this.die();
 		}
 	}
@@ -136,6 +141,25 @@ public class Character : MonoBehaviour {
 			knockBackDir = (attack.getAttackerTransform().position.x - this.getPosition().x) < 0 ? Direction.RIGHT : Direction.LEFT ;
 
 			Vector2 knockBack = new Vector2(1f,1f)*attack.getKnockBackMultiplier();
+			Debug.Log("Knockback initiated: "+knockBack.ToString());
+			knockBack.x *= (knockBackDir==Direction.LEFT?-1:1);
+			this.rb2d.velocity = knockBack;
+			this.isKnockbacking = true;
+			this.isInvincible = true;
+		}
+	}
+
+	public void receiveAttack(int damageValue, GameObject attacker, float knockBackMultiplier)
+	{
+		if(!this.isInvincible)
+		{
+			this.takeDamage(damageValue);
+
+			Direction knockBackDir;
+			knockBackDir = (attacker.transform.position.x - this.getPosition().x) < 0 ? Direction.RIGHT : Direction.LEFT ;
+
+			Vector2 knockBack = new Vector2(1f,1f)*knockBackMultiplier;
+			Debug.Log("Knockback initiated: "+knockBack.ToString());
 			knockBack.x *= (knockBackDir==Direction.LEFT?-1:1);
 			this.rb2d.velocity = knockBack;
 			this.isKnockbacking = true;
@@ -167,7 +191,7 @@ public class Character : MonoBehaviour {
 	private float INVINCIBILITY_DURATION = 1f;
 
 	private float knockBackTimer = 0f;
-	private float KNOCKBACK_DURATION = 0.5f;
+	private float KNOCKBACK_DURATION = 3f;
 
 	// FixedUpdate is called every fixed framerate frame
 	protected void FixedUpdate() {
@@ -185,7 +209,7 @@ public class Character : MonoBehaviour {
 		}
 
 
-		//KnockBack Timekeeping
+		//KnockBack Timekeeping (Mostly for muting user control)
 		if(this.isKnockbacking && knockBackTimer < KNOCKBACK_DURATION)
 		{
 			this.knockBackTimer += Time.deltaTime;
