@@ -51,8 +51,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4710560645085670}
-  - component: {fileID: 114608432261178878}
   - component: {fileID: 114427578796515424}
+  - component: {fileID: 114608432261178878}
   - component: {fileID: 61716539898888002}
   - component: {fileID: 50241916775589908}
   - component: {fileID: 114352095285564444}
@@ -1841,6 +1841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1998bb47d1023e743829aa9ee2dc9a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
+  hp: 0
+  invincibilityTimer: 0
   canControl: 1
 --- !u!114 &114465386301645512
 MonoBehaviour:
@@ -3305,7 +3308,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 1
+    preprocessed: 0
     ExposedEvents: []
     RestartOnEnable: 1
     EnableDebugFlow: 0
