@@ -14,7 +14,7 @@ public class Valla : Human {
 	}
 
 	// Update is called once per frame
-	protected new void Update () {
+	protected new void FixedUpdate () {
 		base.Update();
 		if(canControl)
 		{
@@ -52,6 +52,18 @@ public class Valla : Human {
 		}
 		if(Input.GetKeyUp(KeyCode.Space)){
 			this.cancelJump();
+		}
+	}
+
+	private void checkControl()
+	{
+		if(this.isKnockbacking)
+		{
+			this.canControl = false;
+		}
+		else 
+		{ 
+			this.canControl = true;
 		}
 	}
 }

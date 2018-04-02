@@ -16,14 +16,29 @@ public class Enemy : Character {
 	}
 	
 	// Update is called once per frame
-	protected new void Update () {
+	protected new void FixedUpdate () {
 		base.Update();
 		if(this.keepMoving == true){
 			movementAI();
 		}
+		attackVallaAI();
 	}
 
 
+	//ProtoEnemy AttackAI
+	public void attackVallaAI()
+	{
+		Collider2D[] vallaCollider = new Collider2D[1];
+		ContactFilter2D playerContactFilter = new ContactFilter2D();
+		playerContactFilter.SetLayerMask(LayerMask.GetMask("Player"));
+		playerContactFilter.useLayerMask = true;
+
+		if(this.col2d.OverlapCollider(playerContactFilter,vallaCollider) > 0)
+		{
+			vallaCollider[0].GetComponent<Character>().receiveAttack((new Slash(this)));
+		}
+			
+	}
 	//ProtoEnemy Movement AI
 	public void stopMoving()
 	{
