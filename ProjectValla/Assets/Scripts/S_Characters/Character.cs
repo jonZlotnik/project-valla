@@ -117,6 +117,7 @@ public class Character : MonoBehaviour {
 	{
 		if(this.hp <= 0)
 		{
+			this.hp = 0;
 			Debug.Log("Am i dead?? HP: "+this.hp);
 			this.die();
 		}
