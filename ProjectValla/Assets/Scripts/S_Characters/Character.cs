@@ -104,14 +104,14 @@ public class Character : MonoBehaviour {
 	}
 
 	//Health/Combat Properties
-	public int maxHealth;
+	public int maxHP = 45;
 	public int hp;
 
 	//Health/Combat Functions
 	public void initHP(int hp)
 	{
-		this.maxHealth = hp;
-		this.hp = maxHealth;
+		maxHP = hp;
+		this.hp = maxHP;
 	}
 	private void checkHealth()
 	{
@@ -189,10 +189,10 @@ public class Character : MonoBehaviour {
 
 	//Timers
 	public float invincibilityTimer = 0f;
-	private float INVINCIBILITY_DURATION = 1f;
+	private float INVINCIBILITY_DURATION = 3f;
 
 	private float knockBackTimer = 0f;
-	private float KNOCKBACK_DURATION = 3f;
+	private float KNOCKBACK_DURATION = 1f;
 
 	// FixedUpdate is called every fixed framerate frame
 	protected void FixedUpdate() {
@@ -202,6 +202,7 @@ public class Character : MonoBehaviour {
 		if(this.isInvincible && invincibilityTimer < INVINCIBILITY_DURATION)
 		{
 			this.invincibilityTimer = this.invincibilityTimer + Time.deltaTime;
+			Debug.Log("I'm inviciblleee~!!!!!");
 		}
 		else
 		{
