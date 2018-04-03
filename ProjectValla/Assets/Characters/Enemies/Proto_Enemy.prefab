@@ -1563,6 +1563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   hp: 0
+  invincibilityTimer: 0
 --- !u!114 &114403572656398628
 MonoBehaviour:
   m_ObjectHideFlags: 1
