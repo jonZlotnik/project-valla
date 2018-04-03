@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Valla : Human {
 
+
+ //----------------------------------------------------------------
+//  Main Valla Loop
 	private float lastHorizontalAxisValue = 0f;
 	public bool canControl = true;
 
-	// Use this for initialization
 	protected new void Start () {
 		base.Start();
 
 	}
-
-	// Update is called once per frame
 	protected new void Update () {
 		base.Update();
 		checkControl();
@@ -21,12 +21,18 @@ public class Valla : Human {
 		{
 			userControlHorizontal();
 			userControlVertical();
+			userMobilityAbilities ();
 		}
 		lastHorizontalAxisValue = Input.GetAxis("Horizontal");
 	}
 	protected new void FixedUpdate() {
 		base.FixedUpdate();
 	}
+
+
+
+ //----------------------------------------------------------------
+//  General User Control
 
 	private void userControlHorizontal()
 	{
@@ -45,11 +51,11 @@ public class Valla : Human {
 			this.moveForward(0f);
 		}
 	}
-
 	bool canDoubleJump = false;
 	private void userControlVertical()
 	{
-		if(Input.GetKeyDown(KeyCode.Space)){
+		if(Input.GetAxis("Jump") > 0 && lastJumpAxisValue == 0)
+		{
 			if(this.isGrounded())
 			{
 				this.jump(5f);
@@ -61,14 +67,16 @@ public class Valla : Human {
 				canDoubleJump = false;
 			}
 		}
-		if(Input.GetKeyUp(KeyCode.Space)){
+		if(Input.GetAxis("Jump") == 0)
+		{
 			this.cancelJump();
 		}
+		lastJumpAxisValue = Input.GetAxis ("Jump");
 	}
 
 	private void checkControl()
 	{
-		if(this.isKnockbacking)
+		if(isKnockbacking || isAirdashing)
 		{
 			this.canControl = false;
 		}
@@ -77,4 +85,32 @@ public class Valla : Human {
 			this.canControl = true;
 		}
 	}
+
+	private float lastJumpAxisValue = 0;
+
+
+
+ //----------------------------------------------------------------
+//  Mobility Abilities
+
+	private void userMobilityAbilities ()
+	{
+		if (Input.GetAxis ("AirDash") > 0 && this.isAirdashing == false)
+		{
+			this.airDash ();
+
+		}
+		if (Input.GetAxis ("Glide") > 0 && this.isGliding == false)
+		{
+			this.glide ();
+
+		}
+		if (Input.GetAxis ("Launch") > 0 && this.isLaunching == false)
+		{
+			this.launch ();
+
+		}
+	}
+
+	
 }
