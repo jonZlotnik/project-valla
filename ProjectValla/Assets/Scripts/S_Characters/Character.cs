@@ -13,6 +13,7 @@ public class Character : MonoBehaviour {
 	public bool isAirdashing = false;
 	protected bool isGliding = false;
 	protected bool isChargingLaunch = false;
+	protected bool isLaunching = false;
 	protected bool isOnWall = false;
 	protected bool isFalling = false;
 	protected bool isAttackStance = false;
@@ -149,6 +150,7 @@ public class Character : MonoBehaviour {
 			this.rb2d.velocity = knockBack;
 			this.isKnockbacking = true;
 			this.isInvincible = true;
+			Debug.Log(this.GetType() + "has been attacked!");
 		}
 	}
 	public void receiveAttack(int damageValue, GameObject attacker, float knockBackMultiplier)
@@ -166,13 +168,9 @@ public class Character : MonoBehaviour {
 			this.rb2d.velocity = knockBack;
 			this.isKnockbacking = true;
 			this.isInvincible = true;
+			Debug.Log(this.GetType() + " has been attacked!");
 		}
 	}
-
-	//protected void attack(Attack attack, )
-
-
-
 
 
 	// Use this for initialization
