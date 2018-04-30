@@ -10,8 +10,10 @@ public class Character : MonoBehaviour {
 	protected bool isRunning = false;
 	protected bool isDashing =false;
 	protected bool isKnockbacking = false;
-	protected bool isOnWall = false;
+	public bool isAirdashing = false;
 	protected bool isGliding = false;
+	protected bool isChargingLaunch = false;
+	protected bool isOnWall = false;
 	protected bool isFalling = false;
 	protected bool isAttackStance = false;
 	protected bool isHealthStance = false;
@@ -107,7 +109,7 @@ public class Character : MonoBehaviour {
 	public int maxHP = 45;
 	public int hp;
 
-	//Health/Combat Functions
+	//Health Functions
 	public void initHP(int hp)
 	{
 		maxHP = hp;
@@ -122,12 +124,12 @@ public class Character : MonoBehaviour {
 			this.die();
 		}
 	}
-
 	private void die()
 	{
 		Destroy(this.gameObject);
 	}
 
+	//Combat Functions
 	private void takeDamage(int damage)
 	{
 		this.hp -= damage;
@@ -149,7 +151,6 @@ public class Character : MonoBehaviour {
 			this.isInvincible = true;
 		}
 	}
-
 	public void receiveAttack(int damageValue, GameObject attacker, float knockBackMultiplier)
 	{
 		if(!this.isInvincible)
@@ -180,36 +181,36 @@ public class Character : MonoBehaviour {
 		this.rb2d = this.gameObject.GetComponent<Rigidbody2D>();
 		this.col2d = this.gameObject.GetComponent<Collider2D>(); 
 	}
-	
-	// Update is called once per frame
-	protected void Update () {
-		//checkHealth();
-	}
-
 
 	//Timers
-	public float invincibilityTimer = 0f;
-	private float INVINCIBILITY_DURATION = 3f;
+	private float invincibilityTimer = 0f;
+	public float INVINCIBILITY_DURATION = 3f;
 
 	private float knockBackTimer = 0f;
-	private float KNOCKBACK_DURATION = 1f;
+	public float KNOCKBACK_DURATION = 1f;
 
-	// FixedUpdate is called every fixed framerate frame
-	protected void FixedUpdate() {
-		checkHealth();
+	private float airdashTimer = 0f;
+	public float AIRDASH_DURATION = 0f;
 
+	private float glideTimer = 0f;
+	public float GLIDE_DURATION = 10f;
+
+	private float launchTimer = 0f;
+	public float LAUNCH_CHARGE_DURATION = 0f;
+
+	//Timer Functions
+	private void timers()
+	{
 		//Invincibility Timekeeping
 		if(this.isInvincible && invincibilityTimer < INVINCIBILITY_DURATION)
 		{
 			this.invincibilityTimer = this.invincibilityTimer + Time.deltaTime;
-			Debug.Log("I'm inviciblleee~!!!!!");
 		}
 		else
 		{
 			this.invincibilityTimer = 0;
 			this.isInvincible = false;
 		}
-
 
 		//KnockBack Timekeeping (Mostly for muting user control)
 		if(this.isKnockbacking && knockBackTimer < KNOCKBACK_DURATION)
@@ -221,5 +222,94 @@ public class Character : MonoBehaviour {
 			this.knockBackTimer = 0;
 			this.isKnockbacking = false;
 		}
+
+		//AirDash Timekeeping
+		if(this.isAirdashing && airdashTimer < AIRDASH_DURATION)
+		{
+			this.airdashTimer += Time.deltaTime;
+		}
+		else
+		{
+			this.airdashTimer = 0;
+			this.isAirdashing = false;
+		}
+
+		//Glide Timekeeping
+		if(this.isGliding && glideTimer < GLIDE_DURATION)
+		{
+			this.glideTimer += Time.deltaTime;
+		}
+		else
+		{
+			this.glideTimer = 0;
+			this.isGliding = false;
+		}
+
+		//Launch Timekeeping
+		if(this.isChargingLaunch && launchTimer < LAUNCH_CHARGE_DURATION)
+		{
+			this.launchTimer += Time.deltaTime;
+		}
+		else
+		{
+			this.launchTimer = 0;
+			this.isChargingLaunch = false;
+		}
+	}
+
+ //----------------------------------------------------------------
+//  Mobility Abilities
+
+	// Initiators
+	public float airDashLength = 8f;
+	public float airDashSpeed = 30f;
+	protected void airDash()
+	{
+		AIRDASH_DURATION = airDashLength / airDashSpeed;
+		this.moveForward (airDashSpeed);
+		this.rb2d.velocity = new Vector2 (rb2d.velocity.x, 0f);
+		this.isAirdashing = true;
+	}
+	public float glideTerminal = 3f;
+	protected void glide()
+	{
+		this.isGliding = true;
+	}
+	public float launchHeight = 6f;
+	protected void launch()
+	{
+		this.isChargingLaunch = true;
+	}
+
+	// Maintainers
+	private void mobilityAbilityMaintainers()
+	{
+		if (this.isAirdashing)
+		{
+			rb2d.AddForce (-(Physics2D.gravity));
+		}
+		if (this.isGliding)
+		{
+			if (rb2d.velocity.y < -glideTerminal)
+			{
+				rb2d.velocity = new Vector2 (rb2d.velocity.x, -glideTerminal);
+			}
+		}
+	}
+
+
+
+
+	protected void Update () 
+	{
+		checkHealth ();
+		timers ();
+
+
+	}
+
+	protected void FixedUpdate() 
+	{
+		mobilityAbilityMaintainers ();
 	}
 }

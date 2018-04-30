@@ -424,7 +424,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4133626610677906, guid: 5305a5755e4f8fa45a495a6fdcbcd516, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10.28
       objectReference: {fileID: 0}
     - target: {fileID: 4133626610677906, guid: 5305a5755e4f8fa45a495a6fdcbcd516, type: 2}
       propertyPath: m_LocalPosition.y
@@ -468,6 +468,23 @@ Prefab:
         type: 2}
       propertyPath: fsm.states.Array.data[0].actionData.actionEnabled.Array.data[0]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20991361138811892, guid: 5305a5755e4f8fa45a495a6fdcbcd516,
+        type: 2}
+      propertyPath: orthographic size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235460215213302, guid: 5305a5755e4f8fa45a495a6fdcbcd516, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235460215213302, guid: 5305a5755e4f8fa45a495a6fdcbcd516, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235460215213302, guid: 5305a5755e4f8fa45a495a6fdcbcd516, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5305a5755e4f8fa45a495a6fdcbcd516, type: 2}
