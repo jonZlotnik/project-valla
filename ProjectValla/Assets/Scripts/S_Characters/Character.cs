@@ -150,7 +150,7 @@ public class Character : MonoBehaviour {
 			this.rb2d.velocity = knockBack;
 			this.isKnockbacking = true;
 			this.isInvincible = true;
-			Debug.Log(this.GetType() + "has been attacked!");
+			Debug.Log(this.GetType() + "has been attacked! (Regurlar Version)");
 		}
 	}
 	public void receiveAttack(int damageValue, GameObject attacker, float knockBackMultiplier)
@@ -168,7 +168,7 @@ public class Character : MonoBehaviour {
 			this.rb2d.velocity = knockBack;
 			this.isKnockbacking = true;
 			this.isInvincible = true;
-			Debug.Log(this.GetType() + " has been attacked!");
+			Debug.Log(this.GetType() + " has been attacked! (Michaels Version)");
 		}
 	}
 
